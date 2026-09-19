@@ -13,7 +13,7 @@ A privacy-first decentralized voting and ballot verification platform built on t
 ## 🔗 Project Links
 
 *   **GitHub Repository**: [https://github.com/Debjit2821/midnight-Dapp](https://github.com/Debjit2821/midnight-Dapp)
-*   **LIVE Demo**: `ADD_AFTER_DEPLOYMENT`
+*   **LIVE Demo**: [https://debjit2821.github.io/midnight-Dapp/](https://debjit2821.github.io/midnight-Dapp/)
 *   **Demo Video**: `ADD_AFTER_RECORDING`
 
 ---
