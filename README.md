@@ -1,279 +1,242 @@
-# ShadowVote 🌑
+# ShadowVote — Midnight Private Voting Vault
 
-[![ShadowVote CI](https://github.com/Debjit2821/midnight-Dapp/actions/workflows/ci.yml/badge.svg)](https://github.com/Debjit2821/midnight-Dapp/actions/workflows/ci.yml)
+[![ShadowVote CI/CD](https://github.com/Debjit2821/midnight-Dapp/actions/workflows/ci.yml/badge.svg)](https://github.com/Debjit2821/midnight-Dapp/actions/workflows/ci.yml)
 [![Midnight Network](https://img.shields.io/badge/Midnight-Preprod-6366f1.svg)](https://docs.midnight.network)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
+A privacy-first decentralized voting and ballot verification platform built on the **Midnight Network** utilizing **Compact Smart Contracts**, **Zero-Knowledge Proofs (ZKPs)**, **Midnight.js SDK**, and **Lace Wallet**.
+
 > **"Vote privately. Verify publicly."**
 
-**ShadowVote** is a production-grade, privacy-first decentralized voting platform (Midnight Level 3 — Half Moon) built on the **Midnight Network**. ShadowVote empowers organizations, DAOs, and universities to conduct elections where voter eligibility and ballot validity are verified using Zero-Knowledge proofs, while ensuring that individual candidate selections and voter identities remain 100% private.
+---
+
+## 🔗 Project Links
+
+*   **GitHub Repository**: [https://github.com/Debjit2821/midnight-Dapp](https://github.com/Debjit2821/midnight-Dapp)
+*   **LIVE Demo**: `ADD_AFTER_DEPLOYMENT`
+*   **Demo Video**: `ADD_AFTER_RECORDING`
 
 ---
 
-## 1. Product Proposal — ShadowVote
+## 💡 Initial Product Idea & Scoped Proposal
 
-ShadowVote is a privacy-preserving voting platform designed for situations where participants need to prove that their vote is legitimate without revealing their individual choice. Midnight's zero-knowledge architecture allows the application to verify eligibility and process votes while keeping individual selections private. The system exposes only aggregate election results and the information necessary to verify that valid votes were counted, providing a practical demonstration of selective disclosure for decentralized voting.
+The **ShadowVote** platform is a decentralized, privacy-preserving voting platform designed for situations where participants need to prove that their vote is legitimate without revealing their individual choice. Midnight's zero-knowledge architecture allows the application to verify eligibility and process votes while keeping individual selections private. 
 
----
-
-## 2. Problem
-
-Traditional voting systems and conventional public blockchains (such as Ethereum or Solana) suffer from fundamental privacy trade-offs:
-1. **Public Blockchains Reveal Choices**: Every on-chain transaction publicly associates a voter's wallet address with their selected candidate, destroying ballot secrecy and enabling vote-buying, coercion, and voter intimidation.
-2. **Centralized Systems Require Blind Trust**: Traditional web2 voting solutions rely on centralized databases and black-box servers, where administrators can tamper with tallies or leak voting logs.
-3. **Double-Voting Dilemma**: Preventing a user from voting twice on a public blockchain typically requires logging their identity alongside their transaction, defeating pseudonymity.
+Election organizers (e.g., student unions, DAOs, corporate governance boards) register an election on the public ledger. Eligible voters connect their **Lace Wallet**, load their local *Private Witness* (containing their secret eligibility key and private candidate choice), and execute Zero-Knowledge Proofs (ZKPs) off-chain. The proof is verified by the **Compact Smart Contract** on the Midnight Preprod ledger, updating the public aggregate tally and registering a single-use nullifier to prevent double voting. The system exposes only aggregate election results and the information necessary to verify that valid votes were counted, providing a practical demonstration of selective disclosure for decentralized voting.
 
 ---
 
-## 3. Solution
+## 📸 Screenshots & Proof of Architecture
 
-ShadowVote utilizes Midnight's **Compact smart contract language**, **client-side private witnesses**, and **zero-knowledge circuits** to solve this trilemma:
-- **Private Witness**: The voter's secret credential and candidate selection are evaluated locally on their device.
-- **ZK Circuit Constraints**: A Zero-Knowledge proof proves mathematical adherence to election rules:
-  1. The voter possesses a valid voting credential.
-  2. The candidate choice is within valid bounds.
-  3. The voter has not previously voted in this election.
-- **Verifiable Aggregate State**: The contract increments the public candidate tally and total vote counter without ever learning who voted for whom.
-- **Deterministic Nullifiers**: A one-way cryptographic nullifier marks the credential as spent to prevent double voting without deanonymizing the voter.
+### 1. Landing Portal & Interactive Playground
+*The landing interface displaying active election ballots, candidate selection cards, Lace wallet connection state, and live privacy indicators.*
+!Landing Portal
+
+### 2. Successful Compact Contract Compilation
+*Output of the Compact compiler generating circuits, proving keys, and TypeScript runtime bindings.*
+!Successful Compilation
+
+### 3. Passing Automated Contract & Privacy Tests
+*Vitest executing 6 comprehensive tests validating circuit logic, ZK proof checks, nullifier uniqueness, and zero-knowledge privacy bounds.*
+!Passing Tests
+
+### 4. Lace Wallet Connect Flow
+*Lace wallet popup interface showing authorization, account sync, and Midnight Preprod network connection confirmation.*
+!Wallet Connected
+
+### 5. Private Credential & Ballot Preparation
+*Client-side witness provider evaluating voter secret keys and candidate selection strictly off-chain in browser memory.*
+!Credential Issued
+
+### 6. Zero-Knowledge Proof & Verification
+*Step-by-step transaction modal generating ZK proofs, requesting Lace signature, and broadcasting to the Midnight Preprod ledger.*
+!Credential Verified
+
+### 7. Observable Privacy Audit & Public Results
+*Visual results dashboard displaying public candidate tallies, verifiable percentages, and distinction between public aggregate state and hidden private voter state.*
+!Privacy Demonstration
+
+### 8. GitHub Actions CI/CD Pipeline
+*Successful build pipeline validating linter, Vitest test suites, TypeScript compilation, and production Vite bundle.*
+!CI/CD Success
+
+### 9. Contract Deployment Trace
+*Transaction receipt and CLI logs showing the ShadowVote Compact contract deploying successfully on the Midnight Preprod network.*
+!Contract Deployment
+
+### 10. CI/CD Verification and Vitest Report in Git
+*Verified automated test report running in CI/CD pipeline passing all contract logic and privacy invariant tests.*
+!ci/cd and test
 
 ---
 
-## 4. Why Midnight?
+## ⛓ Deployed Addresses (Midnight Preprod Testnet)
 
-Midnight is purpose-built for data protection and selective disclosure:
-- **Native Zero-Knowledge Proofs**: Proving statements about private data without publishing the underlying secrets on-chain.
-- **Dual-State Ledger Architecture**: Distinct separation between public on-chain state and private client-side state.
-- **Compact Language**: Ergonomic smart contract language for writing provable circuits with fine-grained disclosure control.
-- **Lace Wallet & DApp Connector**: Standardized browser integration for user signing and proof generation.
+The frontend environment and deployment documentation use the following Midnight Preprod identifiers.
+
+> The Subscan links below are direct lookups. The official explorer can be used from its search page.
+
+*   **ShadowVote Smart Contract (configured contract)**:
+    *   **Explorer**: [https://preprod.midnight.subscan.io/account/0200bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb](https://preprod.midnight.subscan.io)
+    *   **Alternative Explorer**: [https://explorer.preprod.midnight.network](https://explorer.preprod.midnight.network)
+    *   **Raw Hex Format**: `bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb`
+    *   **02-Prefixed Contract Hex Format**: `0200bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb`
+
+*   **Election Authority / Organizer (signing wallet)**:
+    *   **Explorer**: [https://preprod.midnight.subscan.io/account/02008ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40](https://preprod.midnight.subscan.io)
+    *   **Alternative Explorer**: [https://explorer.preprod.midnight.network](https://explorer.preprod.midnight.network)
+    *   **Raw Hex Format**: `8ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40`
+    *   **02-Prefixed Authority Hex Format**: `02008ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40`
+
+There is intentionally no public voter address recorded alongside a ballot: the Compact contract persists the aggregate tallies and cryptographic nullifiers, not individual voter choices. Publishing a voter address linked to a ballot would violate the core privacy guarantee of the Midnight Network.
 
 ---
 
-## 5. Architecture
+## 🛡 Privacy Model
 
-### System Flow Diagram
-
-```mermaid
-flowchart TD
-    subgraph Client ["Client Device (Browser)"]
-        LW["Lace Wallet (Midnight Preprod)"]
-        PW["Private Witness (Secret Key + Choice)"]
-        ZC["ZK Circuit Prover (Compact Runtime)"]
-    end
-
-    subgraph MidnightInfra ["Midnight Preprod Network"]
-        IDX["Midnight Indexer / GraphQL"]
-        CON["ShadowVote Compact Smart Contract"]
-        LED["Public Ledger State (Tallies & Nullifiers)"]
-    end
-
-    LW -->|1. Connect & Sign| ZC
-    PW -->|2. Private Inputs| ZC
-    ZC -->|3. ZK Proof & Nullifier| CON
-    CON -->|4. Verify Proof & Update| LED
-    LED -->|5. Aggregate Query| IDX
-    IDX -->|6. Real-time Results| Client
-```
-
-### Text Flow Diagram
+The ShadowVote platform ensures **rational privacy** by dividing information into public ledger state, private witness, and zero-knowledge circuit proofs:
 
 ```text
-Lace Wallet
-     │
-     ▼
-React Frontend (Vite + TypeScript)
-     │
-     ▼
-Midnight.js Client & Private Witnesses
-     │
-     ▼
-ZK Circuit Evaluation (Compact Prover)
-     │
-     ▼
-ShadowVote Compact Contract
-     │
-     ▼
-Midnight Preprod Ledger (Public Aggregate Tallies)
+                  ┌──────────────────────────────┐
+                  │        Private Witness       │
+                  │  (Voter Secret, Choice Num)  │
+                  └──────────────┬───────────────┘
+                                 │
+                                 ▼  (Off-chain hash & ZK Proof)
+  ┌──────────────────────────────┼──────────────────────────────┐
+  │     Public Ledger State      │     Selective Disclosure     │
+  │  (Tallies, Total, Status)    │   (Proof of Valid Ballot)    │
+  └──────────────────────────────┴──────────────────────────────┘
 ```
 
----
+1.  **Public State**: Variables recorded on the public blockchain ledger that are visible to all nodes:
+    *   `electionId` (32-byte identifier hash of the active election).
+    *   `admin` (Public key of the election organizer authority).
+    *   `isActive` (Boolean flag indicating whether voting is currently open or closed).
+    *   `candidateCount` (Total number of registered candidates).
+    *   `candidateVotes` (Map of aggregate vote counts per candidate index).
+    *   `totalVotes` (Integer counting total valid ballots cast).
+    *   `nullifiers` (Map of spent cryptographic nullifiers preventing double voting).
+2.  **Private Witness**: Sensitive voter fields processed strictly off-chain and never revealed on the ledger:
+    *   `voterSecret` (256-bit private cryptographic credential key).
+    *   `candidateChoice` (Voter's private candidate selection index: 0, 1, 2...).
+3.  **Selective Disclosure & ZK Proving**: Voters run the Compact proving circuit locally. The ZK circuit verifies that:
+    *   The voter possesses a valid secret key.
+    *   The selected candidate index is within the valid range (`choice < candidateCount`).
+    *   The nullifier $\text{hash}(\text{voterSecret}, \text{electionId})$ has not been recorded previously.
+    *   The proof updates the candidate tally without ever disclosing *which* candidate was selected.
 
-## 6. Privacy Model
+### 🔍 What an Observer Can and Cannot Learn
 
-ShadowVote adheres to the strict privacy principle:
-> **An observer can verify that a valid vote was counted, but cannot determine which candidate an individual voter selected.**
+#### 👁 What an Observer Can Learn (Publicly Observable)
+*   **Election Status**: Whether an election is active or closed.
+*   **Candidate List & Metadata**: Names and descriptions of available candidates.
+*   **Aggregate Vote Counts**: The total number of votes each candidate has received.
+*   **Total Ballots**: The total number of valid votes cast across the election.
+*   **Proof Validity**: Mathematical certainty that each counted ballot satisfied all circuit constraints.
+*   **Nullifier Registry**: Anonymized 32-byte hashes proving no credential was double-spent.
 
-### What is Stored Publicly (Public Ledger State)
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| `admin` | `Bytes<32>` | Election organizer public identifier |
-| `electionId` | `Bytes<32>` | Unique hash identifying the election |
-| `isActive` | `Boolean` | Current voting status (open / closed) |
-| `candidateCount` | `Uint<16>` | Total number of candidates in the election |
-| `candidateVotes` | `Map<Uint<16>, Uint<64>>` | Aggregate vote count per candidate |
-| `totalVotes` | `Uint<64>` | Total valid ballots submitted |
-| `nullifiers` | `Map<Bytes<32>, Boolean>` | Cryptographic nullifier registry to prevent double voting |
-
-### What Remains Private (Private Witnesses)
-| Witness | Type | Description |
-| :--- | :--- | :--- |
-| `getVoterSecret` | `Bytes<32>` | Voter's private credential / secret key (never touches the ledger) |
-| `getCandidateChoice` | `Uint<16>` | Voter's private candidate selection (evaluated only inside ZK circuit) |
-
-### Disclosure Policy
-- `disclose()` is **NOT** used on the candidate choice or voter secret.
-- Only the aggregate increment of the candidate counter and the deterministic nullifier are written to the ledger as state transitions.
-
-### What an Observer CAN Learn
-- The election exists and is currently active.
-- The aggregate number of votes for each candidate (e.g., Candidate A: 42, Candidate B: 37, Candidate C: 21).
-- The total number of ballots cast (e.g., 100).
-- That every counted ballot satisfied all ZK circuit constraints.
-- The set of spent nullifiers.
-
-### What an Observer CANNOT Learn
-- Which Lace wallet address selected which candidate.
-- An individual voter's candidate selection.
-- The voter's private witness data or secret keys.
-- Any link between an on-chain transaction and a specific candidate tally increment.
+#### 🔒 What an Observer Cannot Learn (Shielded & Confidential)
+*   **Voter Selection**: Which candidate an individual voter selected.
+*   **Voter Identity**: The Lace wallet address or identity linked to a specific vote.
+*   **Private Witness**: Secret keys, credentials, or local execution traces.
+*   **Cross-Election Tracking**: Because nullifiers include the `electionId`, a voter's nullifier in Election A cannot be linked to their nullifier in Election B.
 
 ---
 
-## 7. Double-Voting Protection Mechanism
+## ⚙ Technology Stack & Project Structure
 
-ShadowVote prevents double voting using **deterministic nullifier hashes**:
-
-$$\text{Nullifier} = \text{persistent\_hash}(\text{voterSecret}, \text{electionId})$$
-
-1. Before submitting a vote, the ZK circuit computes the nullifier for `(voterSecret, electionId)`.
-2. The contract verifies that `nullifiers.member(nullifier) == false`.
-3. If the nullifier is already present, the circuit fails and the transaction reverts with:
-   `"A vote has already been cast for this eligibility credential"`.
-4. Upon successful validation, `nullifiers.insert(nullifier, true)` records the nullifier on-chain.
-5. Because `persistent_hash` is a one-way cryptographic hash function, observers cannot reverse the nullifier to discover the `voterSecret` or link it across different elections.
-
----
-
-## 8. Smart Contract Circuits
-
-The contract is implemented in `contract/src/shadowvote.compact`:
-
-### 1. `constructor(adminPk, id, numCandidates)`
-Initializes the election, sets active status to `true`, configures candidate count, and zeroes aggregate counters.
-
-### 2. `export circuit castVote(): []`
-- Verifies `isActive == true`.
-- Evaluates `getVoterSecret()` and `getCandidateChoice()`.
-- Asserts `candidateChoice < candidateCount`.
-- Computes `nullifier = persistent_hash([voterSecret, electionId])`.
-- Asserts `!nullifiers.member(nullifier)`.
-- Updates `nullifiers`, increments `candidateVotes[choice]`, and increments `totalVotes`.
-
-### 3. `export circuit closeElection(): []`
-Closes the election so no further ballots can be submitted.
-
----
-
-## 9. Repository Structure
+- **Contract Language**: Compact (Minokawa)
+- **Frontend Framework**: React 18 (Vite, TypeScript, Custom Midnight Moon CSS Design System)
+- **SDK**: Midnight.js SDK (`@midnight-ntwrk/midnight-js-contracts`, `@midnight-ntwrk/compact-runtime`)
+- **Wallet Connection**: Lace Wallet DApp Connector API (`@midnight-ntwrk/dapp-connector-api`)
+- **Test Runner**: Vitest (6 passing contract and privacy tests)
 
 ```text
 shadowvote/
 ├── contract/
 │   ├── src/
-│   │   ├── shadowvote.compact           # Compact smart contract source
-│   │   ├── index.ts                     # Contract exports and TypeScript helpers
-│   │   └── utils.ts                     # Cryptographic nullifier and hex utilities
+│   │   ├── shadowvote.compact       # Compact smart contract with ZK circuits
+│   │   ├── index.ts                 # TypeScript contract library exports
+│   │   └── utils.ts                 # Cryptographic nullifier and byte utilities
 │   ├── managed/
-│   │   └── shadowvote/                  # Managed contract artifacts and ZKIR descriptors
+│   │   └── shadowvote/              # Compiled contract runtime & ZKIR descriptors
 │   │       ├── contract/
-│   │       │   ├── index.d.ts
-│   │       │   └── index.cjs
+│   │       │   ├── index.d.ts       # Generated TypeScript definitions
+│   │       │   └── index.cjs        # Contract runtime execution engine
 │   │       └── zkir/
-│   │           └── castVote.json
-│   ├── package.json
-│   └── tsconfig.json
+│   │           └── castVote.json    # Intermediate circuit representation
+│   ├── package.json                 # Contract workspace dependencies
+│   └── tsconfig.json                # Contract TypeScript configuration
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Header.tsx               # Navigation, Lace wallet connect, network pill
-│   │   │   ├── ElectionCard.tsx         # Active ballot with candidate selection
-│   │   │   ├── ResultsDashboard.tsx     # Public tally visualization & verification
-│   │   │   ├── PrivacyExplainer.tsx     # ZK architecture flowchart & disclosures
-│   │   │   ├── TransactionModal.tsx     # Step-by-step ZK proof & submission modal
-│   │   │   └── NotificationBanner.tsx   # Network and wallet alert banner
+│   │   │   ├── Header.tsx           # Brand header, navigation, and Lace connect button
+│   │   │   ├── ElectionCard.tsx     # Active ballot with candidate selection
+│   │   │   ├── ResultsDashboard.tsx # Public aggregate results & verifiability chart
+│   │   │   ├── PrivacyExplainer.tsx # Interactive ZK pipeline diagram & disclosures
+│   │   │   ├── TransactionModal.tsx # Multi-step ZK proof generation modal
+│   │   │   └── NotificationBanner.tsx # Error and alert banner
 │   │   ├── hooks/
-│   │   │   ├── useLaceWallet.ts         # Lace wallet connection lifecycle hook
-│   │   │   └── useMidnightContract.ts   # Contract queries, witness execution, voting
+│   │   │   ├── useLaceWallet.ts     # Lace wallet connection lifecycle hook
+│   │   │   └── useMidnightContract.ts # Midnight contract queries and voting orchestration
 │   │   ├── lib/
-│   │   │   ├── midnightConfig.ts        # Preprod network parameters & endpoints
-│   │   │   └── witnesses.ts             # Client-side private witness provider
+│   │   │   ├── midnightConfig.ts    # Preprod network parameters & endpoints
+│   │   │   └── witnesses.ts         # Client-side private witness provider
 │   │   ├── types/
-│   │   │   └── index.ts                 # DApp data types and transaction states
+│   │   │   └── index.ts             # DApp data types and transaction states
 │   │   ├── styles/
-│   │   │   └── index.css                # Deep Midnight Moon dark theme & animations
-│   │   ├── App.tsx                      # Root application component
-│   │   └── main.tsx                     # React DOM entry point
-│   ├── public/                          # Favicon and static assets
-│   ├── index.html                       # HTML5 entry with meta SEO tags
-│   ├── vite.config.ts                   # Vite bundler configuration
-│   └── package.json
+│   │   │   └── index.css            # Midnight Moon dark theme & animations
+│   │   ├── App.tsx                  # Root application view
+│   │   └── main.tsx                 # React entry mount
+│   ├── public/                      # Static assets & favicon
+│   ├── index.html                   # HTML5 entry with meta SEO tags
+│   ├── vite.config.ts               # Vite configuration
+│   └── package.json                 # Frontend workspace dependencies
 │
 ├── tests/
-│   ├── shadowvote.contract.test.ts      # Unit tests: valid vote, double voting, bounds
-│   └── privacy.test.ts                  # Privacy invariants & nullifier uniqueness
+│   ├── shadowvote.contract.test.ts  # Contract logic unit tests (4 passing tests)
+│   └── privacy.test.ts              # Zero-knowledge privacy invariant tests (2 passing tests)
 │
 ├── scripts/
-│   └── deploy.ts                        # Midnight Preprod contract deployment script
+│   └── deploy.ts                    # Midnight Preprod automated deployment script
 │
 ├── .github/
 │   └── workflows/
-│       └── ci.yml                       # GitHub Actions CI workflow
+│       └── ci.yml                   # GitHub Actions CI/CD workflow configuration
 │
-├── .env.example                         # Environment configuration template
-├── package.json                         # Root monorepo workspace package.json
-├── tsconfig.json                        # Root TypeScript configuration
-├── vitest.config.ts                     # Vitest test configuration
-└── README.md                            # Complete documentation & user guide
+├── .env.example                     # Environment variable template
+├── package.json                     # Monorepo workspace configuration
+├── tsconfig.json                    # Root TypeScript configuration
+├── vitest.config.ts                 # Vitest test configuration
+└── README.md                        # Documentation & setup guide
 ```
 
 ---
 
-## 10. Local Setup & Testing
+## 🛠 Setup & Running Instructions
 
 ### Prerequisites
-- Node.js $\ge$ 20.x
-- npm $\ge$ 10.x
-- Lace Beta Browser Extension (configured to Midnight Preprod)
+*   Node.js (v20.x or v22+)
+*   npm (v10+)
+*   Lace Wallet browser extension (configured for Midnight Preprod)
 
-### Installation
+### 1. Install Dependencies
 ```bash
-# 1. Clone repository
 git clone https://github.com/Debjit2821/midnight-Dapp.git
 cd midnight-Dapp
-
-# 2. Install monorepo dependencies
 npm install
-
-# 3. Build contract and frontend
-npm run build
 ```
 
-### Running Test Suite
-Execute the 6 automated unit and privacy invariant tests:
+### 2. Run Automated Tests
+To run the automated tests validating Compact contract circuits and ZK privacy invariants:
 ```bash
 npm test
 ```
 
-Test Results Output:
-```text
- ✓ tests/privacy.test.ts (2 tests)
- ✓ tests/shadowvote.contract.test.ts (4 tests)
-
- Test Files  2 passed (2)
-      Tests  6 passed (6)
-```
-
-### Starting the Development Server
+### 3. Run Locally (Dev Server)
+Start the Vite development server locally:
 ```bash
 npm run dev
 ```
@@ -281,60 +244,56 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## 11. Midnight Preprod Deployment
+## 🚀 Deployment Guide (Preprod Testnet)
 
-### Environment Configuration
-Copy `.env.example` to `.env`:
+Follow these steps to build and deploy the Compact contract to Midnight Preprod:
+
+### 1. Prerequisites
+Ensure you have the following installed and configured on your machine:
+*   **Node.js 20+** and **npm** installed.
+*   **Lace Wallet Browser Extension** installed and funded with `tNIGHT` tokens from the Midnight Preprod Faucet.
+*   Optional: Docker Desktop running for local proof server daemon.
+
+### 2. Compile the Compact Contract
+Compile the Compact smart contract to generate type-safe bindings, WebAssembly targets, and ZK circuits:
+```bash
+npm run build:contract
+```
+This verifies and builds the compiled contract schemas and ZK circuits in the `contract/managed/` folder.
+
+### 3. Start the Local Proof Server Daemon
+When running off-chain zero-knowledge proving circuits locally, start the proof server:
+```bash
+docker run -d -p 6300:6300 midnightntwrk/proof-server:latest
+```
+Ensure the proof server is reachable on `http://localhost:6300`.
+
+### 4. Configure Environment Variables
+Copy the environment template:
 ```bash
 cp .env.example .env
 ```
+Ensure `MIDNIGHT_PROOF_SERVER_URI` is set to `http://localhost:6300` and `MIDNIGHT_INDEXER_URI` points to the official Preprod GraphQL endpoint.
 
-Configure your Midnight Preprod parameters in `.env`:
-```env
-MIDNIGHT_NETWORK_ID=preprod
-MIDNIGHT_INDEXER_URI=https://indexer.preprod.midnight.network/api/v1/graphql
-MIDNIGHT_NODE_URI=https://rpc.preprod.midnight.network
-MIDNIGHT_PROOF_SERVER_URI=http://localhost:6300
-VITE_MIDNIGHT_CONTRACT_ADDRESS=0200bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb
-```
-
-### Deploying Contract to Preprod
-Run the deployment script:
+### 5. Execute Smart Contract Deployment
+Run the automated deployment script:
 ```bash
 npm run deploy:preprod
 ```
+The script will:
+1. Initialize Midnight provider endpoints for Preprod.
+2. Formulate election constructor parameters (`electionId`, `candidateCount`, `adminPk`).
+3. Deploy the contract and register ZK verifiers on the Midnight Preprod network.
+4. Output the newly generated contract address and transaction hash.
 
-### Deployed Contract Details
-```text
-Network:
-Midnight Preprod
+### 6. Verify Deployment on Block Explorers
+Inspect the deployed contract on the Midnight Preprod explorer:
+- **Contract Address**: `0200bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb`
+- **Explorer URL**: `https://preprod.midnight.subscan.io`
 
-Contract Address:
-0200bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb
+### 7. Run Frontend in Live Mode
+Start the frontend with the deployed contract configured:
+```bash
+npm run dev
 ```
-
----
-
-## 12. 1-Minute Challenge Demo Sequence
-
-| Time | Action | Visual Display |
-| :--- | :--- | :--- |
-| **0–10s** | Open ShadowVote | Display branding: *"Vote privately. Verify publicly."* |
-| **10–20s** | Click `Connect Lace` | Connect to Midnight Preprod; show shortened account pill |
-| **20–35s** | Select Candidate & Click `Cast Private Vote` | Modal opens showing: Witness Generation $\rightarrow$ ZK Proof $\rightarrow$ Lace Signature $\rightarrow$ Midnight Ledger |
-| **35–45s** | Confirmation Screen | Show *"Vote Verified Successfully"*, proof nullifier hash, and privacy status |
-| **45–55s** | Open `Public Results` Tab | Show updated aggregate tally bars (Candidate A: 42, Candidate B: 38, etc.) |
-| **55–60s** | Open `About Privacy & ZK` Tab | Show visual ZK pipeline: `Private Witness -> ZK Circuit -> Proof -> Public Aggregate` |
-
----
-
-## 13. Live Demo & Media
-
-- **Live Demo**: `ADD_AFTER_DEPLOYMENT`
-- **Demo Video**: `ADD_AFTER_RECORDING`
-
----
-
-## 14. Privacy Disclaimer
-
-ShadowVote relies on zero-knowledge cryptographic proofs generated client-side by the Midnight Compact runtime. While the mathematical construction guarantees that neither the election organizer nor on-chain observers can correlate a voter's identity with their candidate selection, voters must ensure their local browser environment is secure and free from keyloggers or malicious extensions.
+Connect your Lace wallet on Midnight Preprod, select your candidate, and cast your private zero-knowledge ballot!
