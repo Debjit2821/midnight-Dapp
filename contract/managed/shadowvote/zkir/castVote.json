@@ -1,0 +1,24 @@
+{
+  "circuit_name": "castVote",
+  "version": "0.1.0",
+  "inputs": [
+    { "name": "voterSecret", "type": "witness", "size_bytes": 32 },
+    { "name": "candidateChoice", "type": "witness", "size_bytes": 2 }
+  ],
+  "public_inputs": [
+    { "name": "electionId", "type": "ledger", "size_bytes": 32 },
+    { "name": "candidateCount", "type": "ledger", "size_bytes": 2 },
+    { "name": "isActive", "type": "ledger", "size_bytes": 1 }
+  ],
+  "constraints": [
+    { "type": "assert_equal", "a": "isActive", "b": 1, "description": "Election must be active" },
+    { "type": "assert_less_than", "a": "candidateChoice", "b": "candidateCount", "description": "Choice must be valid" },
+    { "type": "compute_nullifier_hash", "inputs": ["voterSecret", "electionId"], "output": "nullifier" },
+    { "type": "assert_not_member", "set": "nullifiers", "item": "nullifier", "description": "Nullifier cannot be double-spent" }
+  ],
+  "state_transitions": [
+    { "target": "nullifiers", "action": "insert", "item": "nullifier" },
+    { "target": "candidateVotes", "action": "increment", "key": "candidateChoice" },
+    { "target": "totalVotes", "action": "increment" }
+  ]
+}
