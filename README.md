@@ -30,43 +30,53 @@ Election organizers (e.g., student unions, DAOs, corporate governance boards) re
 
 ### 1. Landing Portal & Interactive Playground
 *The landing interface displaying active election ballots, candidate selection cards, Lace wallet connection state, and live privacy indicators.*
-!Landing Portal
+
+![Landing Portal](docs/screenshots/01_landing_portal.png)
 
 ### 2. Successful Compact Contract Compilation
 *Output of the Compact compiler generating circuits, proving keys, and TypeScript runtime bindings.*
-!Successful Compilation
+
+![Successful Compilation](docs/screenshots/02_compact_compilation.png)
 
 ### 3. Passing Automated Contract & Privacy Tests
 *Vitest executing 6 comprehensive tests validating circuit logic, ZK proof checks, nullifier uniqueness, and zero-knowledge privacy bounds.*
-!Passing Tests
+
+![Passing Tests](docs/screenshots/03_passing_tests.png)
 
 ### 4. Lace Wallet Connect Flow
 *Lace wallet popup interface showing authorization, account sync, and Midnight Preprod network connection confirmation.*
-!Wallet Connected
+
+![Wallet Connected](docs/screenshots/04_lace_wallet_connected.png)
 
 ### 5. Private Credential & Ballot Preparation
 *Client-side witness provider evaluating voter secret keys and candidate selection strictly off-chain in browser memory.*
-!Credential Issued
+
+![Private Credential & Ballot Preparation](docs/screenshots/05_private_credential_ballot.png)
 
 ### 6. Zero-Knowledge Proof & Verification
 *Step-by-step transaction modal generating ZK proofs, requesting Lace signature, and broadcasting to the Midnight Preprod ledger.*
-!Credential Verified
+
+![Zero-Knowledge Proof & Verification](docs/screenshots/06_zk_proof_verification.png)
 
 ### 7. Observable Privacy Audit & Public Results
 *Visual results dashboard displaying public candidate tallies, verifiable percentages, and distinction between public aggregate state and hidden private voter state.*
-!Privacy Demonstration
+
+![Observable Privacy Audit & Public Results](docs/screenshots/07_observable_privacy_audit.png)
 
 ### 8. GitHub Actions CI/CD Pipeline
 *Successful build pipeline validating linter, Vitest test suites, TypeScript compilation, and production Vite bundle.*
-!CI/CD Success
+
+![GitHub Actions CI/CD Pipeline](docs/screenshots/08_github_actions_ci.png)
 
 ### 9. Contract Deployment Trace
 *Transaction receipt and CLI logs showing the ShadowVote Compact contract deploying successfully on the Midnight Preprod network.*
-!Contract Deployment
+
+![Contract Deployment Trace](docs/screenshots/09_contract_deployment.png)
 
 ### 10. CI/CD Verification and Vitest Report in Git
 *Verified automated test report running in CI/CD pipeline passing all contract logic and privacy invariant tests.*
-!ci/cd and test
+
+![CI/CD Verification and Vitest Report in Git](docs/screenshots/10_cicd_vitest_report.png)
 
 ---
 
