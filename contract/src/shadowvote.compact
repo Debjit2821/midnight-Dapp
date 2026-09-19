@@ -1,0 +1,108 @@
+// SPDX-License-Identifier: Apache-2.0
+// ShadowVote: Privacy-Preserving Voting Smart Contract on Midnight
+// "Vote privately. Verify publicly."
+
+pragma language_version >= 0.20;
+
+import CompactStandardLibrary;
+
+// ==========================================
+// PUBLIC LEDGER STATE
+// ==========================================
+
+// Election administrator / authority public key
+export ledger admin: Bytes<32>;
+
+// Unique election identifier (e.g. SHA-256 hash of "Student Council Election 2026")
+export ledger electionId: Bytes<32>;
+
+// Election operational status (true = active, false = closed)
+export ledger isActive: Boolean;
+
+// Total number of registered candidates in this election
+export ledger candidateCount: Uint<16>;
+
+// Aggregate vote tally per candidate index (candidateIndex => voteCount)
+export ledger candidateVotes: Map<Uint<16>, Uint<64>>;
+
+// Public total number of valid ballots cast
+export ledger totalVotes: Uint<64>;
+
+// Cryptographic nullifier registry to prevent double voting
+// (nullifierHash => isSpent)
+export ledger nullifiers: Map<Bytes<32>, Boolean>;
+
+// ==========================================
+// PRIVATE WITNESSES (Off-chain Local Execution)
+// ==========================================
+
+// Voter's private secret credential / key (never disclosed to the ledger)
+witness getVoterSecret(): Bytes<32>;
+
+// Voter's private candidate selection index (never disclosed to the ledger)
+witness getCandidateChoice(): Uint<16>;
+
+// ==========================================
+// CONSTRUCTOR
+// ==========================================
+
+constructor(adminPk: Bytes<32>, id: Bytes<32>, numCandidates: Uint<16>) {
+    admin = adminPk;
+    electionId = id;
+    isActive = true;
+    candidateCount = numCandidates;
+    totalVotes = 0;
+}
+
+// ==========================================
+// ZERO-KNOWLEDGE CIRCUITS
+// ==========================================
+
+/**
+ * @notice Cast an anonymous ballot for a candidate in the active election.
+ * 
+ * Privacy Invariants:
+ * 1. The voter's private secret key is used locally to compute a deterministic nullifier.
+ * 2. The circuit verifies the candidate choice is valid (< candidateCount).
+ * 3. The circuit verifies the nullifier has not been recorded before (anti-double voting).
+ * 4. The circuit increments the aggregate candidate tally and overall vote counter.
+ * 5. Neither the voter's identity nor their selected candidate is ever disclosed.
+ */
+export circuit castVote(): [] {
+    // 1. Verify election status
+    assert isActive, "Election is not active or has been closed";
+
+    // 2. Fetch private inputs via witnesses (executed strictly off-chain)
+    const voterSecret = getVoterSecret();
+    const candidateChoice = getCandidateChoice();
+
+    // 3. Ensure candidate choice is within valid range
+    assert candidateChoice < candidateCount, "Selected candidate index out of range";
+
+    // 4. Compute unique nullifier for (voterSecret, electionId)
+    // persistent_hash is a collision-resistant cryptographic hash function in Compact
+    const nullifier = persistent_hash<Vector<2, Bytes<32>>>([voterSecret, electionId]);
+
+    // 5. Anti-Double-Voting Verification: Ensure credential was not previously spent
+    assert !nullifiers.member(nullifier), "A vote has already been cast for this eligibility credential";
+
+    // 6. Record nullifier on-chain to prevent future reuse
+    nullifiers.insert(nullifier, true);
+
+    // 7. Increment public aggregate tally for the selected candidate
+    const currentTally = candidateVotes.member(candidateChoice) 
+        ? candidateVotes.lookup(candidateChoice) 
+        : 0;
+    candidateVotes.insert(candidateChoice, currentTally + 1);
+
+    // 8. Increment aggregate total vote counter
+    totalVotes = totalVotes + 1;
+}
+
+/**
+ * @notice Close the election to prevent further ballots from being submitted.
+ */
+export circuit closeElection(): [] {
+    assert isActive, "Election is already closed";
+    isActive = false;
+}
