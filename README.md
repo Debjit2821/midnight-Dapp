@@ -14,7 +14,7 @@ A privacy-first decentralized voting and ballot verification platform built on t
 
 *   **GitHub Repository**: [https://github.com/Debjit2821/midnight-Dapp](https://github.com/Debjit2821/midnight-Dapp)
 *   **LIVE Demo**: [https://midnight-dapp-frontend.vercel.app/](https://midnight-dapp-frontend.vercel.app/)
-*   **Demo Video**: `ADD_AFTER_RECORDING`
+*   **Demo Video**: [https://youtu.be/nui19DTB0zk](https://youtu.be/nui19DTB0zk)
 
 ---
 
