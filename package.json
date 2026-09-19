@@ -1,0 +1,32 @@
+{
+  "name": "shadowvote",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-Grade Midnight Level 3 DApp — Private Voting with Publicly Verifiable Tallies",
+  "workspaces": [
+    "contract",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=contract && npm run build --workspace=frontend",
+    "build:contract": "npm run build --workspace=contract",
+    "build:frontend": "npm run build --workspace=frontend",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev": "npm run dev --workspace=frontend",
+    "deploy:preprod": "tsx scripts/deploy.ts",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "@midnight-ntwrk/compact-runtime": "^0.19.0",
+    "@midnight-ntwrk/dapp-connector-api": "^4.0.1",
+    "@midnight-ntwrk/midnight-js-contracts": "^4.1.1",
+    "@midnight-ntwrk/midnight-js-types": "^4.1.1"
+  }
+}

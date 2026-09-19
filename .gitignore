@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+.npm/
+
+# Build artifacts
+dist/
+build/
+.vite/
+
+# Midnight artifacts & cache
+managed/keys/
+*.zkir.bin
+.midnight/
+private-state/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
