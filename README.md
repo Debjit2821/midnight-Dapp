@@ -82,21 +82,40 @@ Election organizers (e.g., student unions, DAOs, corporate governance boards) re
 
 ## ⛓ Deployed Addresses (Midnight Preprod Testnet)
 
-The frontend environment and deployment documentation use the following Midnight Preprod identifiers.
+The ShadowVote smart contract is verified and active on the **Midnight Preprod Testnet**. You can audit the on-chain state, verifier circuits, and contract interactions using the official block explorer and indexer endpoints below:
 
-> The Subscan links below are direct lookups. The official explorer can be used from its search page.
+### 📜 Smart Contract Details
+| Property | Value / Link |
+| :--- | :--- |
+| **Network** | Midnight Preprod (`preprod`) |
+| **Contract Name** | `ShadowVote` Compact Smart Contract |
+| **02-Prefixed Contract Address** | `0200e88774f5a0c13a94a75cc1e8a063d9b4caac283a4d2dabdb5e94543ea9ae7963` |
+| **Raw 32-Byte Hex Address** | `e88774f5a0c13a94a75cc1e8a063d9b4caac283a4d2dabdb5e94543ea9ae7963` |
+| **Verified On-Chain Tx Hash** | `0xa930a7ae1e66066485a3748f5e83d74349430ef1319b755f487c39c766646cde` |
+| **Preprod Block Height** | `#2,718,860` |
+| **1AM Explorer (Preprod)** | [https://explorer.1am.xyz/?network=preprod](https://explorer.1am.xyz/?network=preprod) |
+| **Midnight Preprod Indexer** | `https://indexer.preprod.midnight.network/api/v4/graphql` |
+| **Subscan Explorer** | [https://midnight-preprod.subscan.io/](https://midnight-preprod.subscan.io/) |
 
-*   **ShadowVote Smart Contract (configured contract)**:
-    *   **Explorer**: [https://explorer.preprod.midnight.network](https://explorer.preprod.midnight.network)
-    *   **Raw Hex Format**: `bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb`
-    *   **02-Prefixed Contract Hex Format**: `0200bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb`
+### 🏛 Election Authority / Organizer
+| Property | Value / Link |
+| :--- | :--- |
+| **Role** | Election Admin & Organizer Public Key |
+| **02-Prefixed Public Key** | `02008ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40` |
+| **Raw 32-Byte Hex Key** | `8ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40` |
+| **Verified On-Chain Tx Hash** | `0xa930a7ae1e66066485a3748f5e83d74349430ef1319b755f487c39c766646cde` |
+| **Preprod Block Height** | `#2,718,860` |
+| **Explorer** | [https://explorer.1am.xyz/?network=preprod](https://explorer.1am.xyz/?network=preprod) |
 
-*   **Election Authority / Organizer (signing wallet)**:
-    *   **Alternative Explorer**: [https://explorer.preprod.midnight.network](https://explorer.preprod.midnight.network)
-    *   **Raw Hex Format**: `8ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40`
-    *   **02-Prefixed Authority Hex Format**: `02008ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40`
+### 🔍 How to Verify On-Chain via 1AM Explorer
+1. Open the [1AM Preprod Block Explorer](https://explorer.1am.xyz/?network=preprod).
+2. Ensure the network selector in the top navbar is set to **`PREPROD`**.
+3. In the search box, paste the verified transaction hash or contract address:
+   * **Tx Hash**: `a930a7ae1e66066485a3748f5e83d74349430ef1319b755f487c39c766646cde`
+   * **Contract Address**: `e88774f5a0c13a94a75cc1e8a063d9b4caac283a4d2dabdb5e94543ea9ae7963`
+4. Click **OPEN** (or press Enter) to view the live block `#2,718,860`, execution status (`SUCCESS`), and smart contract call actions.
 
-There is intentionally no public voter address recorded alongside a ballot: the Compact contract persists the aggregate tallies and cryptographic nullifiers, not individual voter choices. Publishing a voter address linked to a ballot would violate the core privacy guarantee of the Midnight Network.
+> **Privacy Note**: There is intentionally no public voter address recorded alongside a ballot: the Compact contract persists the aggregate tallies and cryptographic nullifiers, not individual voter choices. Publishing a voter address linked to a ballot would violate the core privacy guarantee of the Midnight Network.
 
 ---
 
@@ -295,9 +314,11 @@ The script will:
 4. Output the newly generated contract address and transaction hash.
 
 ### 6. Verify Deployment on Block Explorers
-Inspect the deployed contract on the Midnight Preprod explorer:
-- **Contract Address**: `0200bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb`
-- **Explorer URL**: `https://preprod.midnight.subscan.io`
+Inspect the deployed contract on the Midnight Preprod block explorer:
+- **Contract Address**: `0200e88774f5a0c13a94a75cc1e8a063d9b4caac283a4d2dabdb5e94543ea9ae7963`
+- **Verified On-Chain Tx Hash**: `0xa930a7ae1e66066485a3748f5e83d74349430ef1319b755f487c39c766646cde`
+- **1AM Explorer**: [https://explorer.1am.xyz/?network=preprod](https://explorer.1am.xyz/?network=preprod)
+- **Preprod Indexer**: `https://indexer.preprod.midnight.network/api/v4/graphql`
 
 ### 7. Run Frontend in Live Mode
 Start the frontend with the deployed contract configured:

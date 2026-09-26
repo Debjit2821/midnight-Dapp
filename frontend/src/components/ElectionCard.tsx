@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import type { Election, VoteReceipt, WalletState } from '../types';
-import { Lock, CheckCircle2, Shield, AlertCircle, Sparkles, UserCheck, Check } from 'lucide-react';
+import { MIDNIGHT_CONFIG } from '../lib/midnightConfig';
+import { Lock, CheckCircle2, Shield, AlertCircle, Sparkles, UserCheck, Check, ExternalLink } from 'lucide-react';
 
 interface ElectionCardProps {
     election: Election;
@@ -33,7 +34,19 @@ export const ElectionCard: React.FC<ElectionCardProps> = ({
             {/* Header banner of the card */}
             <div className="card-header">
                 <div className="card-status-row">
-                    <span className="election-pill-tag">OFFICIAL BALLOT</span>
+                    <div className="flex items-center gap-2">
+                        <span className="election-pill-tag">OFFICIAL BALLOT</span>
+                        <a
+                            href={MIDNIGHT_CONFIG.explorerAccountUrl(MIDNIGHT_CONFIG.contractAddress)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="contract-pill-tag"
+                            title={`Midnight Preprod Contract: ${MIDNIGHT_CONFIG.contractAddress}`}
+                        >
+                            <span>Contract: {MIDNIGHT_CONFIG.contractAddress.slice(0, 8)}...{MIDNIGHT_CONFIG.contractAddress.slice(-4)}</span>
+                            <ExternalLink className="w-3 h-3 ml-1 opacity-70" />
+                        </a>
+                    </div>
                     <span className={`status-badge ${election.status.toLowerCase()}`}>
                         <span className="status-indicator"></span>
                         {election.status}
@@ -68,6 +81,18 @@ export const ElectionCard: React.FC<ElectionCardProps> = ({
                                 <span className="receipt-value mono" title={lastReceipt.txId}>
                                     {lastReceipt.txId.slice(0, 10)}...{lastReceipt.txId.slice(-6)}
                                 </span>
+                            </div>
+                            <div className="receipt-row">
+                                <span className="receipt-label">Midnight Contract</span>
+                                <a
+                                    href={MIDNIGHT_CONFIG.explorerAccountUrl(MIDNIGHT_CONFIG.contractAddress)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="receipt-value mono text-cyan-400 hover:text-cyan-300 inline-flex items-center"
+                                >
+                                    <span>{MIDNIGHT_CONFIG.contractAddress.slice(0, 8)}...{MIDNIGHT_CONFIG.contractAddress.slice(-4)}</span>
+                                    <ExternalLink className="w-3 h-3 ml-1" />
+                                </a>
                             </div>
                             <div className="receipt-row">
                                 <span className="receipt-label">Privacy Status</span>

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { WalletState } from '../types';
 import { MIDNIGHT_CONFIG } from '../lib/midnightConfig';
-import { ShieldCheck, Moon, Wallet, LogOut, CheckCircle2, ChevronRight } from 'lucide-react';
+import { ShieldCheck, Moon, Wallet, LogOut, CheckCircle2, ChevronRight, ExternalLink } from 'lucide-react';
 
 interface HeaderProps {
     walletState: WalletState;
@@ -63,10 +63,17 @@ export const Header: React.FC<HeaderProps> = ({
 
                 {/* Right controls: Network badge & Lace wallet button */}
                 <div className="header-actions">
-                    <div className="network-badge">
+                    <a
+                        href={MIDNIGHT_CONFIG.explorerAccountUrl(MIDNIGHT_CONFIG.contractAddress)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="network-badge hover:border-indigo-500/50 transition-colors"
+                        title={`Verified Midnight Preprod Contract: ${MIDNIGHT_CONFIG.contractAddress} (Click to open Explorer)`}
+                    >
                         <span className="network-dot"></span>
-                        Midnight {MIDNIGHT_CONFIG.networkId.toUpperCase()}
-                    </div>
+                        <span>Midnight {MIDNIGHT_CONFIG.networkId.toUpperCase()}</span>
+                        <ExternalLink className="w-3 h-3 ml-1 opacity-70" />
+                    </a>
 
                     {walletState.isConnected && walletState.address ? (
                         <div className="wallet-connected-pill">

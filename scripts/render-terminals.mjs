@@ -222,7 +222,7 @@ async function main() {
 
 <span class="purple-txt">[1/5] Initializing Midnight Provider Configuration...</span>
       Network ID        : <span class="green-txt">preprod</span>
-      Indexer Endpoint  : <span class="cyan-txt">https://indexer.preprod.midnight.network/api/v1/graphql</span>
+      Indexer Endpoint  : <span class="cyan-txt">https://indexer.preprod.midnight.network/api/v4/graphql</span>
       Node RPC Endpoint : <span class="cyan-txt">https://rpc.preprod.midnight.network</span>
       Proof Server      : <span class="cyan-txt">http://localhost:6300</span>
 
@@ -239,9 +239,9 @@ async function main() {
 <span class="purple-txt">[4/5] Deploying to Midnight Preprod Consensus...</span>
       <span class="green-txt">[✓]</span> Zero-Knowledge Circuit Verifiers Registered
       <span class="green-txt">[✓]</span> Nullifier Registry Initialized
-      <span class="green-txt">[✓]</span> Transaction Mined on Preprod
-      Tx Hash           : <span class="cyan-txt">0x7f195608cc76115f98993287e5a6299c97aaf83d5323e74239de78f8823c0dac</span>
-      Contract Address  : <span class="green-txt font-bold">0200bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb</span>
+      <span class="green-txt">[✓]</span> Transaction Mined on Preprod (Block #2,718,860)
+      Tx Hash           : <span class="cyan-txt">0xa930a7ae1e66066485a3748f5e83d74349430ef1319b755f487c39c766646cde</span>
+      Contract Address  : <span class="green-txt font-bold">0200e88774f5a0c13a94a75cc1e8a063d9b4caac283a4d2dabdb5e94543ea9ae7963</span>
 
 <span class="green-txt">[5/5] Deployment Complete! Environment updated successfully.</span>`
         ),

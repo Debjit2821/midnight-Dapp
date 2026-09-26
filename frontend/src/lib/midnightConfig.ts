@@ -7,15 +7,19 @@ export interface MidnightNetworkConfig {
     nodeUri: string;
     proofServerUri: string;
     contractAddress: string;
+    explorerAccountUrl: (address: string) => string;
+    explorerTxUrl: (txId: string) => string;
 }
 
 export const MIDNIGHT_CONFIG: MidnightNetworkConfig = {
     networkId: 'preprod',
-    indexerUri: (import.meta as any).env?.VITE_MIDNIGHT_INDEXER_URI || 'https://indexer.preprod.midnight.network/api/v1/graphql',
-    indexerWsUri: (import.meta as any).env?.VITE_MIDNIGHT_INDEXER_WS_URI || 'wss://indexer.preprod.midnight.network/api/v1/graphql/ws',
+    indexerUri: (import.meta as any).env?.VITE_MIDNIGHT_INDEXER_URI || 'https://indexer.preprod.midnight.network/api/v4/graphql',
+    indexerWsUri: (import.meta as any).env?.VITE_MIDNIGHT_INDEXER_WS_URI || 'wss://indexer.preprod.midnight.network/api/v4/graphql/ws',
     nodeUri: (import.meta as any).env?.VITE_MIDNIGHT_NODE_URI || 'https://rpc.preprod.midnight.network',
     proofServerUri: (import.meta as any).env?.VITE_MIDNIGHT_PROOF_SERVER_URI || 'http://localhost:6300',
-    contractAddress: (import.meta as any).env?.VITE_MIDNIGHT_CONTRACT_ADDRESS || '02005a68766f74655f70726570726f645f736861646f77766f74655f636f6e7472616374'
+    contractAddress: (import.meta as any).env?.VITE_MIDNIGHT_CONTRACT_ADDRESS || '0200e88774f5a0c13a94a75cc1e8a063d9b4caac283a4d2dabdb5e94543ea9ae7963',
+    explorerAccountUrl: (address: string) => `https://explorer.1am.xyz/?network=preprod`,
+    explorerTxUrl: (txId: string) => `https://explorer.1am.xyz/?network=preprod`
 };
 
 export const INITIAL_ELECTION_DATA = {
@@ -23,6 +27,7 @@ export const INITIAL_ELECTION_DATA = {
     title: 'Student Council Election 2026',
     description: 'Annual election for the university Student Council Executive Board. Anonymous voting with on-chain zero-knowledge proofs and publicly verifiable results.',
     status: 'ACTIVE' as const,
+    contractAddress: '0200e88774f5a0c13a94a75cc1e8a063d9b4caac283a4d2dabdb5e94543ea9ae7963',
     candidates: [
         {
             id: 0,
@@ -48,5 +53,5 @@ export const INITIAL_ELECTION_DATA = {
         1: 37,
         2: 21
     },
-    admin: '0200a89f9211c4710db4491c3d6e53a921d01918fa90562e811c75b0bc74900a'
+    admin: '02008ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40'
 };

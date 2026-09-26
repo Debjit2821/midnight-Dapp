@@ -1,5 +1,6 @@
 import React from 'react';
 import type { TransactionProgress } from '../types';
+import { MIDNIGHT_CONFIG } from '../lib/midnightConfig';
 import { ShieldCheck, Cpu, KeyRound, CheckCircle2, AlertCircle, Loader2, X, ExternalLink } from 'lucide-react';
 
 interface TransactionModalProps {
@@ -114,6 +115,21 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({ progress, on
                         <div className="tx-row">
                             <span className="tx-label">Midnight Preprod Tx:</span>
                             <span className="tx-hash mono">{progress.txHash.slice(0, 16)}...{progress.txHash.slice(-8)}</span>
+                        </div>
+                        <div className="tx-row mt-2">
+                            <span className="tx-label">Contract Address:</span>
+                            <span className="tx-hash mono">{MIDNIGHT_CONFIG.contractAddress.slice(0, 8)}...{MIDNIGHT_CONFIG.contractAddress.slice(-4)}</span>
+                        </div>
+                        <div className="mt-3 pt-2 border-t border-slate-700/50 flex flex-wrap gap-2 justify-center">
+                            <a
+                                href={MIDNIGHT_CONFIG.explorerAccountUrl(MIDNIGHT_CONFIG.contractAddress)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center text-xs text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+                            >
+                                <ExternalLink className="w-3.5 h-3.5 mr-1" />
+                                1AM Block Explorer
+                            </a>
                         </div>
                     </div>
                 )}
