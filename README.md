@@ -87,13 +87,11 @@ The frontend environment and deployment documentation use the following Midnight
 > The Subscan links below are direct lookups. The official explorer can be used from its search page.
 
 *   **ShadowVote Smart Contract (configured contract)**:
-    *   **Explorer**: [https://preprod.midnight.subscan.io/account/0200bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb](https://preprod.midnight.subscan.io)
-    *   **Alternative Explorer**: [https://explorer.preprod.midnight.network](https://explorer.preprod.midnight.network)
+    *   **Explorer**: [https://explorer.preprod.midnight.network](https://explorer.preprod.midnight.network)
     *   **Raw Hex Format**: `bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb`
     *   **02-Prefixed Contract Hex Format**: `0200bc5a5e7e812f5206c5ed89ff6dbb718596ee678ed4a5909dad5322645ddb`
 
 *   **Election Authority / Organizer (signing wallet)**:
-    *   **Explorer**: [https://preprod.midnight.subscan.io/account/02008ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40](https://preprod.midnight.subscan.io)
     *   **Alternative Explorer**: [https://explorer.preprod.midnight.network](https://explorer.preprod.midnight.network)
     *   **Raw Hex Format**: `8ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40`
     *   **02-Prefixed Authority Hex Format**: `02008ccdc19c4a26f42fed3fc6f14f48ef5eea63dc2de9213cf60d50448783ba7f40`
